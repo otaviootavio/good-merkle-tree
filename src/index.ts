@@ -1,4 +1,5 @@
 import { testMerkleTreeJS } from "./merkletreejstest";
+import { testMerkleTreeMemoryTimeEfficient } from "./mymerkletreeefficient";
 import { testMyMerkleTree } from "./mymerkletreetest";
 import { Uint8ArrayUtils } from "./Uint8ArrayUtils";
 
@@ -17,5 +18,7 @@ function main() {
   testMyMerkleTree(data, leaf);
   console.log("\n");
   testMerkleTreeJS(data, leaf);
+  console.log("\n");
+  testMerkleTreeMemoryTimeEfficient(data, leaf);
 }
 main();

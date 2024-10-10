@@ -60,13 +60,18 @@ class MerkleTree {
   }
 
   generateProof(data: Uint8Array): Uint8Array[] | null {
+    // hash the data to get the leaf
     const targetHash = this.hashFunction.hash(data);
+
+    // find the leaf index
     const targetIndex = this.leaves.findIndex(
       (leaf) => Uint8ArrayUtils.compare(leaf.hash, targetHash) === 0
     );
     if (targetIndex === -1) return null;
 
     const proof: Uint8Array[] = [];
+    // the current index is the leaf index
+    // the current level is the list of nodes of same the layer
     let currentIndex = targetIndex;
     let currentLevel: MerkleNode[] = this.leaves;
 
@@ -79,6 +84,7 @@ class MerkleTree {
       }
 
       currentIndex = Math.floor(currentIndex / 2);
+      // calculates the upper layer by pairing and hashing the leafs
       currentLevel = this.getNextLevel(currentLevel);
     }
 

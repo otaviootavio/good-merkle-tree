@@ -13,7 +13,7 @@ export function testMerkleTreeJS(data: Uint8Array[], leaf: Uint8Array) {
   const root = tree.getRoot().toString("hex");
 
   console.time("Proof generation for merkletreejs");
-  const proof = tree.getHexProof(Buffer.from(leaf));
+  const proof = tree.getProof(Buffer.from(leaf));
   console.timeEnd("Proof generation for merkletreejs");
 
   console.time("Proof verification for merkletreejs");
