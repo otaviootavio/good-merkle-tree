@@ -19,7 +19,7 @@ class MerkleNode {
   ) {}
 }
 
-class MerkleTree {
+class MerkleTreeMemoryEfficient {
   private root: MerkleNode | null = null;
   private readonly hashFunction: HashFunction;
   private leaves: MerkleNode[] = [];
@@ -156,23 +156,26 @@ class MerkleTree {
   }
 }
 
-export function testMyMerkleTree(data: Uint8Array[], leaf: Uint8Array) {
+export function testMerkleTreeMemoryEfficient(
+  data: Uint8Array[],
+  leaf: Uint8Array
+) {
   // Usage example
   const hashFunction = new SHA256Hash();
 
-  console.time("Merkle tree generation for mymerkletree");
-  const merkleTree = new MerkleTree(hashFunction);
+  console.time("Merkle tree generation for MerkleTreeMemoryEfficient");
+  const merkleTree = new MerkleTreeMemoryEfficient(hashFunction);
   merkleTree.buildTree(data);
-  console.timeEnd("Merkle tree generation for mymerkletree");
+  console.timeEnd("Merkle tree generation for MerkleTreeMemoryEfficient");
   // console.log('Proof for "b":', proof?.map(Uint8ArrayUtils.toHexString));
 
-  console.time("Proof generation for mymerkletree");
+  console.time("Proof generation for MerkleTreeMemoryEfficient");
   const proof = merkleTree.generateProof(leaf);
-  console.timeEnd("Proof generation for mymerkletree");
+  console.timeEnd("Proof generation for MerkleTreeMemoryEfficient");
 
-  console.time("Proof verification for mymerkletree");
+  console.time("Proof verification for MerkleTreeMemoryEfficient");
   const isValid = merkleTree.verifyProof(leaf, proof!);
-  console.timeEnd("Proof verification for mymerkletree");
+  console.timeEnd("Proof verification for MerkleTreeMemoryEfficient");
 
   // console.log("Is proof valid?", isValid);
 

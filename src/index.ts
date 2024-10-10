@@ -1,6 +1,6 @@
 import { testMerkleTreeJS } from "./merkletreejstest";
-import { testMerkleTreeMemoryTimeEfficient } from "./mymerkletreeefficient";
-import { testMyMerkleTree } from "./mymerkletreetest";
+import { testMerkleTreeTimeEfficient } from "./MerkleTreeTimeEfficient";
+import { testMerkleTreeMemoryEfficient } from "./MerkleTreeMemoryEfficient";
 import { Uint8ArrayUtils } from "./Uint8ArrayUtils";
 
 function main() {
@@ -15,10 +15,10 @@ function main() {
   const randomLeafIndex = Math.floor(Math.random() * data.length);
   const leaf = data[randomLeafIndex];
 
-  testMyMerkleTree(data, leaf);
+  testMerkleTreeMemoryEfficient(data, leaf);
   console.log("\n");
   testMerkleTreeJS(data, leaf);
   console.log("\n");
-  testMerkleTreeMemoryTimeEfficient(data, leaf);
+  testMerkleTreeTimeEfficient(data, leaf);
 }
 main();

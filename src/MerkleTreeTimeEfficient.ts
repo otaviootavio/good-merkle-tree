@@ -11,7 +11,7 @@ export class SHA256Hash implements HashFunction {
   }
 }
 
-class MerkleTreeMemoryTimeEfficient {
+class MerkleTreeTimeEfficient {
   private readonly hashFunction: HashFunction;
   private layers: Uint8Array[][];
   private leafCount: number;
@@ -118,24 +118,24 @@ class MerkleTreeMemoryTimeEfficient {
   }
 }
 
-export function testMerkleTreeMemoryTimeEfficient(
+export function testMerkleTreeTimeEfficient(
   data: Uint8Array[],
   leaf: Uint8Array
 ) {
   const hashFunction = new SHA256Hash();
 
-  console.time("Merkle tree generation for MemoryTimeEfficient");
-  const merkleTree = new MerkleTreeMemoryTimeEfficient(hashFunction);
+  console.time("Merkle tree generation for MerkleTreeTimeEfficient");
+  const merkleTree = new MerkleTreeTimeEfficient(hashFunction);
   merkleTree.buildTree(data);
-  console.timeEnd("Merkle tree generation for MemoryTimeEfficient");
+  console.timeEnd("Merkle tree generation for MerkleTreeTimeEfficient");
 
-  console.time("Proof generation for MemoryTimeEfficient");
+  console.time("Proof generation for MerkleTreeTimeEfficient");
   const proof = merkleTree.generateProof(leaf);
-  console.timeEnd("Proof generation for MemoryTimeEfficient");
+  console.timeEnd("Proof generation for MerkleTreeTimeEfficient");
 
-  console.time("Proof verification for MemoryTimeEfficient");
+  console.time("Proof verification for MerkleTreeTimeEfficient");
   const isValid = merkleTree.verifyProof(leaf, proof!);
-  console.timeEnd("Proof verification for MemoryTimeEfficient");
+  console.timeEnd("Proof verification for MerkleTreeTimeEfficient");
 
   console.log(
     "Merkle Root:",
