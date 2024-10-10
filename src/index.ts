@@ -3,7 +3,7 @@ import { testMyMerkleTree } from "./mymerkletreetest";
 import { Uint8ArrayUtils } from "./Uint8ArrayUtils";
 
 function main() {
-  const data = Array.from({ length: 2 ** 16 - 1 }, () => {
+  const data = Array.from({ length: 2 ** 16 }, () => {
     return (
       Math.random().toString(36).substring(2, 15) +
       Math.random().toString(36).substring(2, 15)
@@ -15,6 +15,7 @@ function main() {
   const leaf = data[randomLeafIndex];
 
   testMyMerkleTree(data, leaf);
+  console.log("\n");
   testMerkleTreeJS(data, leaf);
 }
 main();

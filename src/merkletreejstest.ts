@@ -9,9 +9,16 @@ export function testMerkleTreeJS(data: Uint8Array[], leaf: Uint8Array) {
     sortLeaves: false,
   });
   console.timeEnd("Merkle tree generation for merkletreejs");
+
   const root = tree.getRoot().toString("hex");
-  console.log("Merkle Root:", root);
+
   console.time("Proof generation for merkletreejs");
   const proof = tree.getHexProof(Buffer.from(leaf));
   console.timeEnd("Proof generation for merkletreejs");
+
+  console.time("Proof verification for merkletreejs");
+  const isValid = tree.verify(proof, Buffer.from(leaf), root);
+  console.timeEnd("Proof verification for merkletreejs");
+
+  console.log("Merkle Root:", root);
 }

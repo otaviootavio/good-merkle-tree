@@ -157,13 +157,12 @@ export function testMyMerkleTree(data: Uint8Array[], leaf: Uint8Array) {
   console.time("Merkle tree generation for mymerkletree");
   const merkleTree = new MerkleTree(hashFunction);
   merkleTree.buildTree(data);
-  console.log(
-    "Merkle Root:",
-    Uint8ArrayUtils.toHexString(merkleTree.getRoot()!)
-  );
-  const proof = merkleTree.generateProof(leaf);
   console.timeEnd("Merkle tree generation for mymerkletree");
   // console.log('Proof for "b":', proof?.map(Uint8ArrayUtils.toHexString));
+
+  console.time("Proof generation for mymerkletree");
+  const proof = merkleTree.generateProof(leaf);
+  console.timeEnd("Proof generation for mymerkletree");
 
   console.time("Proof verification for mymerkletree");
   const isValid = merkleTree.verifyProof(leaf, proof!);
@@ -173,4 +172,8 @@ export function testMyMerkleTree(data: Uint8Array[], leaf: Uint8Array) {
 
   // console.log("\nTree structure:");
   // console.log(merkleTree.dumpTree());
+  console.log(
+    "Merkle Root:",
+    Uint8ArrayUtils.toHexString(merkleTree.getRoot()!)
+  );
 }
